@@ -1,8 +1,10 @@
-const script = document.createElement('script');
+export function loadOpenCv() {
+  const script = document.createElement('script');
 
-script.src = 'https://docs.opencv.org/3.4.0/opencv.js';
+  script.src = 'https://docs.opencv.org/3.4.0/opencv.js';
 
-document.body.appendChild(script);
+  document.body.appendChild(script);
+}
 
 export class MotionDetection {
   constructor({

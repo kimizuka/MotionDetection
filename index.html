@@ -12,7 +12,7 @@
     <video autoplay playsinline muted></video>
     <p id="txt"></p>
     <script type="module">
-      import { MotionDetection } from './MotionDetection.js';
+      import { loadOpenCv, MotionDetection } from './MotionDetection.js';
 
       window.Module = {
         onRuntimeInitialized() {
@@ -56,6 +56,8 @@
       function errorCallback(err) {
         alert(err);
       };
+
+      loadOpenCv();
     </script>
   </body>
 </html>
