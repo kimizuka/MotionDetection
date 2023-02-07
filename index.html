@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>MotionDetection.js</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <style>
+    video {
+      width: 100%;
+    }
+  </style>
+  <body>
+    <video autoplay playsinline muted></video>
+    <p id="txt"></p>
+    <script src="./MotionDetection.js"></script>
+    <script>
+      const Module = {
+        onRuntimeInitialized() {
+          const medias = {
+            audio: false,
+            video: {
+              facingMode: 'user'
+            }
+          };
+
+          navigator.mediaDevices.getUserMedia(medias).then(successCallback)
+                                                     .catch(errorCallback);
+        }
+      };
+
+      function successCallback(stream) {
+        const video = document.querySelector('video');
+        const txt = document.getElementById('txt');
+        const fps = 8;
+
+        video.oncanplay = () => {
+          new ns.MotionDetection({
+            video,
+            onMove,
+            onStop,
+            fps
+          });
+        };
+
+        function onMove() {
+          txt.innerText = 'MOVE';
+        }
+        
+        function onStop() {
+          txt.innerText = '';
+        }
+
+        video.srcObject = stream;
+      }
+
+      function errorCallback(err) {
+        alert(err);
+      };
+    </script>
+  </body>
+</html>
