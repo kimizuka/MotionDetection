@@ -11,9 +11,10 @@
   <body>
     <video autoplay playsinline muted></video>
     <p id="txt"></p>
-    <script src="./MotionDetection.js"></script>
-    <script>
-      const Module = {
+    <script type="module">
+      import { MotionDetection } from './MotionDetection.js';
+
+      window.Module = {
         onRuntimeInitialized() {
           const medias = {
             audio: false,
@@ -33,7 +34,7 @@
         const fps = 8;
 
         video.oncanplay = () => {
-          new ns.MotionDetection({
+          new MotionDetection({
             video,
             onMove,
             onStop,
